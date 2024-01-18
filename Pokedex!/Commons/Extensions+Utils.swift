@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIImageView {
+    
     func fetchOfficialArtwork(from url: URL) {
         URLSession.shared.dataTask(with: url) { data, _, error in
             if let data = data, let artworkImage = UIImage(data: data) {

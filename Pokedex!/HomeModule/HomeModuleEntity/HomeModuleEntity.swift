@@ -14,16 +14,19 @@ struct PokemonCardDetails: Codable{
     let types: [TypeElement]
     let stats: [Stat]
 }
+
 struct PokemonListResponse: Codable {
     let count: Int
     let next: String?
     let previous: String?
     let results: [Pokemon]
 }
+
 struct Pokemon: Codable {
     let name: String
     let url: String
 }
+
 struct PokemonCellsDetails: Codable{
     let name: String
     let id: Int

@@ -8,20 +8,19 @@
 import Foundation
 
 class HomeExternalDataManager: HomeExternalDataManagerProtocol {
+    
     var interactorOutputProtocol: HomeModuleInteractorOutputProtocol?
     var pokemonList = [PokemonListResponse]()
     var pokemonImages = [PokemonCellsDetails]()
     
-    func fetchPokemonList(completion: @escaping () -> Void) {
+    func fetchPokemonList() {
         guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon/") else {
             return
         }
-        
         let task = URLSession.shared.dataTask(with: url) { [self] data, response, error in
             guard let data = data else {
                 return
             }
-            
             do {
                 let decoder = JSONDecoder()
                 let pokemonList = try decoder.decode(PokemonListResponse.self, from: data)
@@ -30,13 +29,11 @@ class HomeExternalDataManager: HomeExternalDataManagerProtocol {
                 fetchPokemonDetailsSequentially(pokemonList: pokemonList) { pokemons, pokemonsData in
                     self.pokemonImages = pokemons
                     self.interactorOutputProtocol?.onPokemonImageRetrieved(pokemons, pokemonsData)
-                    completion()
                 }
             } catch {
                 print("Error decoding JSON: \(error)")
             }
         }
-        
         task.resume()
     }
     

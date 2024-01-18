@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import Foundation
 import UIKit
 
 class HomeModuleRouter: HomeModuleRouterProtocol {
+    
     var view: HomeViewController?
     var presenter: HomeModulePresenterInputProtocol & HomeModulePresenterOutputProtocol & HomeModulePresenterProtocol
     var interactor: HomeModuleInteractorInputProtocol & HomeModuleInteractorOutputProtocol & HomeModuleInteractorProtocol

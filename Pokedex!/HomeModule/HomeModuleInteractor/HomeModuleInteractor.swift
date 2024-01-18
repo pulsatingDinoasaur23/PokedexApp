@@ -14,8 +14,8 @@ class HomeModuleInteractor: HomeModuleInteractorProtocol {
 }
 extension HomeModuleInteractor: HomeModuleInteractorInputProtocol {
     func fetchPokemonLists(){
-        externalDataManager?.fetchPokemonList{
-        }
+        externalDataManager?.fetchPokemonList()
+        
     }
 }
 extension HomeModuleInteractor: HomeModuleInteractorOutputProtocol {
@@ -51,6 +51,5 @@ extension HomeModuleInteractor: HomeModuleInteractorOutputProtocol {
         }
         self.presenter?.presentViewOfPokemonS(imageDataArray)
     }
-    
 }
 
